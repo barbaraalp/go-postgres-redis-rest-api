@@ -40,20 +40,20 @@ const (
 		quantity_available,
 		description
 	FROM food_listing
-	WHERE id = ?
+	WHERE id = $1
 	`
 )
 
-func GetAll(ctx context.Context) ([]foodlisting.Food, error) {
+func GetAll(ctx context.Context) ([]foodlisting.FoodListing, error) {
 	rows, err := db.QueryContext(ctx, getAll)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	var foods []foodlisting.Food
+	var foods []foodlisting.FoodListing
 	for rows.Next() {
-		var food foodlisting.Food
+		var food foodlisting.FoodListing
 		if err := rows.Scan(&food.ID, &food.EstablishmentName, &food.FoodType, &food.Location, &food.Price, &food.QuantityAvailable, &food.Description); err != nil {
 			return nil, err
 		}
@@ -66,12 +66,12 @@ func GetAll(ctx context.Context) ([]foodlisting.Food, error) {
 	return foods, nil
 }
 
-func GetByID(ctx context.Context, id int) (foodlisting.Food, error) {
-	var food foodlisting.Food
+func GetByID(ctx context.Context, id int) (foodlisting.FoodListing, error) {
+	var food foodlisting.FoodListing
 	err := db.QueryRowContext(ctx, getById, id).
 		Scan(&food.ID, &food.EstablishmentName, &food.FoodType, &food.Location, &food.Price, &food.QuantityAvailable, &food.Description)
 	if err != nil {
-		return foodlisting.Food{}, err
+		return foodlisting.FoodListing{}, err
 	}
 
 	return food, nil

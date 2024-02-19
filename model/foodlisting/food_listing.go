@@ -1,6 +1,6 @@
 package foodlisting
 
-type Food struct {
+type FoodListing struct {
 	ID                int     `json:"id"`
 	EstablishmentName string  `json:"establishment_name"`
 	FoodType          string  `json:"food_type"`

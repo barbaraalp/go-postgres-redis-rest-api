@@ -6,6 +6,6 @@ import (
 )
 
 func SetFoodRoutes(r chi.Router) {
-	r.Get("/foods", foodlisting.GetAllFoods)
-	r.Get("/foods/{id}", foodlisting.GetFoodByID)
+	r.Get("/food-listings", foodlisting.GetAllFoods)
+	r.Get("/food-listings/{id}", foodlisting.GetFoodByID)
 }
