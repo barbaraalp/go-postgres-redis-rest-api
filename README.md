@@ -56,5 +56,4 @@ docker logs golang
 - **handler/foodlisting/food_listing_handler.go**: Contém os manipuladores para os endpoints relacionados a listagem de alimentos.
 - **model/foodlisting/food_listing.go**: Define a estrutura de dados para um item alimentício.
 - **repository/foodlisting/food_listing_repository.go**: Contém funções para acessar o banco de dados PostgreSQL.
-- **config/postgres_init.sql**: Script SQL para inicialização do banco de dados PostgreSQL com dados de exemplo.
 🚀
