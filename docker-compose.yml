@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    container_name: golang
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    container_name: postgresdb
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./files:/docker-entrypoint-initdb.d
+
+  redis:
+    container_name: rediscache
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
