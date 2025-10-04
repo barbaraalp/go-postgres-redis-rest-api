@@ -15,7 +15,7 @@ import (
 	redis "github.com/go-redis/redis/v8"
 )
 
-var redisHost = "192.168.100.14:6379"
+var redisHost = "redis:6379"
 var redisClient *redis.Client
 
 func init() {
@@ -56,7 +56,6 @@ func GetAllFoods(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("fail to get food listing: %v", err)))
 		return
 	}
-
 	data, err := json.Marshal(foods)
 	if err != nil {
 		w.Write([]byte(fmt.Sprintf("error marshalling foods for cache: %v", err)))
